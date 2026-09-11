@@ -168,6 +168,84 @@ body.negative #root {
   100% { scale: 1 1; }
 }
 
+/* --- Closing crawl (final page): tilted reel, slow upward loop -------- */
+.html-page-final {
+  padding-top: 13vh;
+  justify-content: flex-start;
+}
+
+.crawl-viewport {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  perspective: 320px;
+  /* Text materializes from the fade, dissolves into it */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 22%, black 72%, transparent 98%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 22%, black 72%, transparent 98%);
+}
+
+.crawl-reel {
+  transform-origin: 50% 0%;
+  transform: rotateX(52deg);
+  animation: crawlUp 75s linear infinite;
+}
+
+@keyframes crawlUp {
+  from { transform: rotateX(52deg) translateY(12%); }
+  to { transform: rotateX(52deg) translateY(-50%); }
+}
+
+.crawl-body {
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 0 28px 12vh;
+  text-align: center;
+}
+
+.crawl-title {
+  font-family: 'Audiowide', sans-serif;
+  font-weight: 400;
+  font-size: clamp(22px, 3.4vw, 34px);
+  letter-spacing: 4px;
+  color: #fff;
+  text-shadow: 0 0 18px rgba(34, 211, 238, 0.9);
+  margin: 0 0 6px;
+}
+
+.crawl-kicker {
+  font-family: 'Space Mono', ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 5px;
+  color: #22d3ee;
+  margin: 0 0 26px;
+}
+
+.crawl-text {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 400;
+  font-size: clamp(15px, 1.8vw, 18px);
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0 0 22px;
+}
+
+.crawl-end {
+  font-family: 'Space Mono', ui-monospace, monospace;
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: #a3e635;
+  text-shadow: 0 0 12px rgba(163, 230, 53, 0.8);
+  margin: 34px 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crawl-reel {
+    animation: none;
+    transform: rotateX(52deg);
+  }
+}
+
 /* --- ScrollControls shell (drei owns the scroll container) --- */
 .app-shell {
   position: fixed;
