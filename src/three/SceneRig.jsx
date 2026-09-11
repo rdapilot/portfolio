@@ -6,7 +6,7 @@ import * as THREE from 'three'
 import SectorTitle from './SectorTitle.jsx'
 import PlanetSystem from './PlanetSystem.jsx'
 import CardCarousel from './CardCarousel.jsx'
-import GardenFinale, { BRAIN_BASE_Y } from './GardenFinale.jsx'
+import GardenFinale, { CHIP_BASE_Y } from './GardenFinale.jsx'
 import CloudLayer from './CloudLayer.jsx'
 import { CARD_COUNT, CARD_RADIUS, CARD_TEXTURE_URLS, SPOTLIGHT_END, SPOTLIGHT_START } from '../config/sceneConfig.js'
 import { smooth01 } from '../utils/math.js'
@@ -46,7 +46,7 @@ export default function SceneRig({ onSelect }) {
   const hotspotsRef = useRef(null)
   const hoverPause = useRef({ count: 0, epoch: 0 })
   const gardenRef = useRef(null)
-  const brainRef = useRef(null)
+  const chipRef = useRef(null)
   const cloudsRef = useRef(null)
 
   // Scratch objects reused every frame — never allocate inside useFrame.
@@ -331,15 +331,15 @@ export default function SceneRig({ onSelect }) {
     // Same counter-scaling: threshold is world-authored, position is local.
     gardenRef.current.visible = gardenRef.current.position.y > (-13.5 / sceneFit)
     if (!gardenRef.current.visible) return
-    // Slow turntable + gentle hover for the brain; frozen on hover-pause so
+    // Slow turntable + gentle hover for the chip; frozen on hover-pause so
     // inspecting a hotspot never fights the motion. Bob is counter-scaled so
-    // the brain holds the same world height on every screen size.
-    if (!paused && !prefersReducedMotion && brainRef.current) {
-      brainRef.current.rotation.y += clampedDelta * 0.3
+    // the chip holds the same world height on every screen size.
+    if (!paused && !prefersReducedMotion && chipRef.current) {
+      chipRef.current.rotation.y += clampedDelta * 0.3
     }
-    if (brainRef.current && !prefersReducedMotion) {
-      brainRef.current.position.y =
-        (BRAIN_BASE_Y + Math.sin(state.clock.elapsedTime * 1.1) * 0.15) / sceneFit
+    if (chipRef.current && !prefersReducedMotion) {
+      chipRef.current.position.y =
+        (CHIP_BASE_Y + Math.sin(state.clock.elapsedTime * 1.1) * 0.15) / sceneFit
     }
   }
 
@@ -405,7 +405,7 @@ export default function SceneRig({ onSelect }) {
         />
       <GardenFinale
         groupRef={gardenRef}
-        brainRef={brainRef}
+        chipRef={chipRef}
       />
         <CloudLayer groupRef={cloudsRef} clouds={clouds} cloudMaterial={cloudMaterial} puffShapes={CLOUD_PUFFS} />
       </group>
