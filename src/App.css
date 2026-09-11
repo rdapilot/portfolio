@@ -187,19 +187,19 @@ body.negative #root {
 
 .crawl-reel {
   transform-origin: 50% 0%;
-  transform: rotateX(52deg);
+  transform: rotateX(60deg);
   animation: crawlUp 75s linear infinite;
 }
 
 @keyframes crawlUp {
-  from { transform: rotateX(52deg) translateY(12%); }
-  to { transform: rotateX(52deg) translateY(-50%); }
+  from { transform: rotateX(60deg) translateY(12%); }
+  to { transform: rotateX(60deg) translateY(-50%); }
 }
 
 .crawl-body {
-  max-width: 660px;
+  max-width: 520px;
   margin: 0 auto;
-  padding: 0 28px 12vh;
+  padding: 0 36px 12vh;
   text-align: center;
 }
 
@@ -242,7 +242,7 @@ body.negative #root {
 @media (prefers-reduced-motion: reduce) {
   .crawl-reel {
     animation: none;
-    transform: rotateX(52deg);
+    transform: rotateX(60deg);
   }
 }
 
