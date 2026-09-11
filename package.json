@@ -3,6 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "description": "EndoMind — a retro-futuristic 3D scroll journey (React + Three.js + GSAP)",
+  "engines": {
+    "node": ">=20"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",

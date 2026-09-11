@@ -13,7 +13,9 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          # Vite 8 / rolldown requires Node 20+ (styleText API) — Node 18
+          # fails the build with a node:util SyntaxError.
+          node-version: '20'
       
       - name: Install dependencies
         run: npm install
