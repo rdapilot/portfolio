@@ -1,0 +1,180 @@
+/* Shared liquid-glass system. Same material language as the navbar
+   glass-toggle (blur 16px, saturate 1.6, inset top light, deep shadow) and
+   the same spring curve cubic-bezier(0.3, 1.4, 0.5, 1) so every component
+   feels like one family. Magnetic offset arrives via --mag-x/--mag-y set
+   by useMagneticPull. */
+
+.liquid-glass {
+  --mag-x: 0px;
+  --mag-y: 0px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(16px) saturate(1.6);
+  -webkit-backdrop-filter: blur(16px) saturate(1.6);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.14),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.18),
+    0 4px 12px rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+}
+
+/* Top specular streak, mirrors .glass-toggle::before */
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 1px;
+  height: 1px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  pointer-events: none;
+}
+
+/* Magnetically pulled inner content (icons, labels) */
+.liquid-glass > .liquid-inner {
+  transform: translate(var(--mag-x), var(--mag-y));
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* --- Bottom dock ------------------------------------------------- */
+.liquid-dock {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: 22px;
+}
+
+.liquid-dock-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 15px;
+  cursor: pointer;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.75);
+  transition:
+    background 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    color 0.3s ease;
+}
+
+.liquid-dock-btn:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.liquid-dock-btn.is-active {
+  color: #fff;
+  background: rgba(170, 59, 255, 0.16);
+  border-color: rgba(200, 150, 255, 0.35);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.16),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.18),
+    0 4px 12px rgba(0, 0, 0, 0.22),
+    0 0 14px rgba(170, 59, 255, 0.25);
+}
+
+.liquid-dock-btn .liquid-inner svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Goo press: same squash-and-stretch as the toggle knob's gooOn/gooOff */
+.liquid-dock-btn:active .liquid-inner {
+  animation: liquidGoo 0.5s ease-out;
+}
+
+.liquid-dock-sep {
+  width: 1px;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.14);
+  margin: 0 2px;
+}
+
+@keyframes liquidGoo {
+  0% { scale: 1 1; }
+  35% { scale: 1.35 0.72; }
+  65% { scale: 0.9 1.12; }
+  100% { scale: 1 1; }
+}
+
+/* Dock entrance */
+.liquid-dock {
+  animation: dockRise 0.7s cubic-bezier(0.3, 1.4, 0.5, 1) both;
+}
+
+@keyframes dockRise {
+  from { opacity: 0; transform: translateX(-50%) translateY(24px) rotate(1deg); }
+}
+
+/* --- Fleeing orbs (non-interactive decoration) -------------------- */
+.flee-orbs {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.flee-orb {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  /* Independent `translate` property so the rAF-driven `transform`
+     (flee offset + goo stretch) never fights the -50% centering. */
+  translate: -50% -50%;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.35), transparent 46%),
+    linear-gradient(145deg, rgba(var(--orb-tint, 170, 59, 255), 0.22), rgba(var(--orb-tint, 170, 59, 255), 0.05) 62%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(14px) saturate(1.6);
+  -webkit-backdrop-filter: blur(14px) saturate(1.6);
+  box-shadow:
+    inset 0 2px 3px rgba(255, 255, 255, 0.28),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.22),
+    0 8px 24px rgba(0, 0, 0, 0.28),
+    0 0 22px rgba(var(--orb-tint, 170, 59, 255), 0.18);
+  will-change: transform;
+}
+
+/* Gentle idle breathing so still orbs feel alive */
+.flee-orb {
+  animation: orbBreathe 5s ease-in-out infinite;
+}
+
+@keyframes orbBreathe {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.12); }
+}
+
+/* --- Liquid treatment for the existing icon-demo button ----------- */
+.icon-demo-toggle.liquid-glass {
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.icon-demo-toggle.liquid-glass:active .liquid-inner {
+  animation: liquidGoo 0.5s ease-out;
+}
+
+/* --- Reduced motion: still glass, no physics ---------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .liquid-dock,
+  .flee-orb,
+  .liquid-dock-btn:active .liquid-inner,
+  .icon-demo-toggle.liquid-glass:active .liquid-inner {
+    animation: none;
+  }
+}

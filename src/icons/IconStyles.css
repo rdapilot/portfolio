@@ -1,0 +1,99 @@
+/**
+ * Icon Styles for ViteReact3D
+ * 
+ * Modern line-based icon styles matching the site's aesthetic:
+ * - Rounded line caps and joins
+ * - Consistent stroke weights
+ * - Themed colors matching the design system
+ */
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.icon:hover {
+  opacity: 0.7;
+  transform: scale(1.05);
+}
+
+.icon--small {
+  width: 16px;
+  height: 16px;
+}
+
+.icon--medium {
+  width: 20px;
+  height: 20px;
+}
+
+.icon--large {
+  width: 24px;
+  height: 24px;
+}
+
+.icon--xlarge {
+  width: 32px;
+  height: 32px;
+}
+
+/* Icon size variants using className prop */
+.icon-size-xs { width: 12px; height: 12px; }
+.icon-size-sm { width: 16px; height: 16px; }
+.icon-size-md { width: 20px; height: 20px; }
+.icon-size-lg { width: 24px; height: 24px; }
+.icon-size-xl { width: 32px; height: 32px; }
+.icon-size-xxl { width: 48px; height: 48px; }
+
+/* Icon color variants matching theme colors */
+.icon-primary { color: var(--text-h, #08060d); }
+.icon-accent { color: var(--accent, #aa3bff); }
+.icon-white { color: #ffffff; }
+.icon-muted { color: var(--text, #6b6375); }
+
+/* Button icon styles */
+.button-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Navbar icon style */
+.navbar-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Icon with badge */
+.icon-with-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-with-badge::after {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: var(--accent, #aa3bff);
+  color: #fff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  line-height: 1;
+}

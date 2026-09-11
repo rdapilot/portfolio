@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="90" viewBox="0 0 600 90">
+  <rect width="600" height="90" fill="#050510"/>
+  <defs>
+    <clipPath id="chevclip">
+      <rect x="60" y="10" width="480" height="70"/>
+    </clipPath>
+    <g id="chevrow" fill="none" stroke="#ff2d78" stroke-width="7">
+      <path d="M0,18 L28,45 L0,72"/>
+      <path d="M48,18 L76,45 L48,72"/>
+      <path d="M96,18 L124,45 L96,72"/>
+      <path d="M144,18 L172,45 L144,72"/>
+      <path d="M192,18 L220,45 L192,72"/>
+      <path d="M240,18 L268,45 L240,72"/>
+      <path d="M288,18 L316,45 L288,72"/>
+      <path d="M336,18 L364,45 L336,72"/>
+      <path d="M384,18 L412,45 L384,72"/>
+      <path d="M432,18 L460,45 L432,72"/>
+      <path d="M480,18 L508,45 L480,72"/>
+      <path d="M528,18 L556,45 L528,72"/>
+    </g>
+  </defs>
+  <rect x="60" y="10" width="480" height="70" fill="none" stroke="#ff2d78" stroke-width="1" opacity="0.5"/>
+  <g clip-path="url(#chevclip)">
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="-96 0; 0 0" dur="1.6s" repeatCount="indefinite"/>
+      <use href="#chevrow" x="60"/>
+      <use href="#chevrow" x="156"/>
+      <use href="#chevrow" x="252"/>
+      <use href="#chevrow" x="348"/>
+      <use href="#chevrow" x="444"/>
+      <use href="#chevrow" x="540"/>
+    </g>
+  </g>
+  <text x="300" y="86" text-anchor="middle" font-family="monospace" font-size="11" letter-spacing="6" fill="#ff2d78">DO NOT CROSS</text>
+</svg>

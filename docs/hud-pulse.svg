@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="120" viewBox="0 0 600 120">
+  <rect width="600" height="120" fill="#050510"/>
+  <path id="trace" d="M 30 84 H 210 L 260 34 H 470 L 510 74 H 570" fill="none" stroke="#a3e635" stroke-width="2" opacity="0.4"/>
+  <polygon points="30,76 38,71 46,76 46,92 38,97 30,92" fill="none" stroke="#a3e635" stroke-width="2"/>
+  <polygon points="562,66 570,61 578,66 578,82 570,87 562,82" fill="none" stroke="#a3e635" stroke-width="2"/>
+  <polygon points="252,26 260,21 268,26 268,42 260,47 252,42" fill="none" stroke="#e879f9" stroke-width="2"/>
+  <circle r="5" fill="#eaffd0">
+    <animateMotion dur="2.6s" repeatCount="indefinite">
+      <mpath href="#trace"/>
+    </animateMotion>
+  </circle>
+  <circle r="10" fill="none" stroke="#a3e635" stroke-width="1" opacity="0.6">
+    <animateMotion dur="2.6s" repeatCount="indefinite">
+      <mpath href="#trace"/>
+    </animateMotion>
+  </circle>
+</svg>

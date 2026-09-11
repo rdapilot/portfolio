@@ -1,0 +1,11 @@
+Model Information:
+* title:	Paper Globe
+* source:	https://sketchfab.com/3d-models/paper-globe-c76f51451656456e808e6979f5cff756
+* author:	Jaenal Arifin (https://sketchfab.com/arif.jae)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Paper Globe" (https://sketchfab.com/3d-models/paper-globe-c76f51451656456e808e6979f5cff756) by Jaenal Arifin (https://sketchfab.com/arif.jae) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
