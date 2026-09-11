@@ -382,7 +382,7 @@ export default function SceneRig({ onSelect }) {
     <>
       {/* Self-hosted HDR (public/hdr): byte-identical to the old `city`
          preset, but served locally — no runtime CDN dependency. */}
-      <Environment files="/hdr/potsdamer_platz_1k.hdr" />
+      <Environment files="hdr/potsdamer_platz_1k.hdr" />
       {/* Responsive shell: uniform scale keeps the composition identical,
          only smaller, on phones. Environment stays outside (light only). */}
       <group scale={sceneFit}>

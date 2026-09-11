@@ -52,16 +52,17 @@ export const PLANET_GLOWS = PLANET_POSITIONS.map(() => {
 export const CARD_COUNT = 9
 export const CARD_RADIUS = 1.8
 
+// Relative (no leading slash) so textures resolve under any deploy subpath.
 export const CARD_TEXTURE_URLS = [
-  '/assets/_ (21).jpeg',
-  '/assets/_ (22).jpeg',
-  '/assets/_ (23).jpeg',
-  '/assets/_ (24).jpeg',
-  '/assets/_ (25).jpeg',
-  '/assets/_ (26).jpeg',
-  '/assets/_ (27).jpeg',
-  '/assets/_ (28).jpeg',
-  '/assets/Use this card when nothing makes sense.jpeg',
+  'assets/_ (21).jpeg',
+  'assets/_ (22).jpeg',
+  'assets/_ (23).jpeg',
+  'assets/_ (24).jpeg',
+  'assets/_ (25).jpeg',
+  'assets/_ (26).jpeg',
+  'assets/_ (27).jpeg',
+  'assets/_ (28).jpeg',
+  'assets/Use this card when nothing makes sense.jpeg',
 ].map(encodeURI)
 
 // Card metadata shown in hover dialogue bubbles + the spotlight caption.

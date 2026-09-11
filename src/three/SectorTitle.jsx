@@ -89,7 +89,7 @@ export default function SectorTitle() {
   const renderGhostCopy = (color, xOffset, slot) => (
     <Text3D
       key={slot}
-      font="/fonts/helvetiker_bold.typeface.json"
+      font="fonts/helvetiker_bold.typeface.json"
       size={0.42}
       height={0.1}
       curveSegments={6}
@@ -117,7 +117,7 @@ export default function SectorTitle() {
         <Center>
           <group>
             <Text3D
-              font="/fonts/helvetiker_bold.typeface.json"
+              font="fonts/helvetiker_bold.typeface.json"
               size={0.42}
               height={0.14}
               curveSegments={8}

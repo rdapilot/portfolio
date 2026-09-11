@@ -4,6 +4,10 @@ import { defineConfig } from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  // Relative base: the built site resolves assets from its own directory, so
+  // it works at a domain root (Vercel) AND under a subpath (GitHub Pages
+  // project site). Absolute '/' paths would 404 everywhere except root.
+  base: './',
   build: {
     // three.js minifies to ~725KB (185KB over the wire) — that is the floor
     // for the library itself, already lazy-loaded after first paint, so the
