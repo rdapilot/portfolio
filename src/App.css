@@ -179,7 +179,10 @@ body.negative #root {
   flex: 1;
   min-height: 0;
   overflow: hidden;
-  perspective: 320px;
+  /* Deep perspective: a close lens (e.g. 320px) crushes a tall tilted plane
+     into an unreadable sliver — the whole manifesto collapsed to ~140px.
+     1100px keeps near lines full-size while the far end recedes naturally. */
+  perspective: 1100px;
   /* Text materializes from the fade, dissolves into it */
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 22%, black 72%, transparent 98%);
   mask-image: linear-gradient(to bottom, transparent 0%, black 22%, black 72%, transparent 98%);
@@ -187,13 +190,13 @@ body.negative #root {
 
 .crawl-reel {
   transform-origin: 50% 0%;
-  transform: rotateX(60deg);
+  transform: rotateX(42deg);
   animation: crawlUp 75s linear infinite;
 }
 
 @keyframes crawlUp {
-  from { transform: rotateX(60deg) translateY(12%); }
-  to { transform: rotateX(60deg) translateY(-50%); }
+  from { transform: rotateX(42deg) translateY(12%); }
+  to { transform: rotateX(42deg) translateY(-50%); }
 }
 
 .crawl-body {
@@ -227,6 +230,8 @@ body.negative #root {
   font-size: clamp(15px, 1.8vw, 18px);
   line-height: 1.9;
   color: rgba(255, 255, 255, 0.88);
+  /* Dark backing so lines stay legible while crossing the glowing chip. */
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95), 0 0 4px rgba(0, 0, 0, 0.9);
   margin: 0 0 22px;
 }
 
@@ -242,7 +247,7 @@ body.negative #root {
 @media (prefers-reduced-motion: reduce) {
   .crawl-reel {
     animation: none;
-    transform: rotateX(60deg);
+    transform: rotateX(42deg);
   }
 }
 
