@@ -63,8 +63,23 @@ html, body {
   transition: filter 0.6s ease;
 }
 
-body.negative #root {
+/* Negative mode inverts every DOM layer BUT the WebGL canvas, so the exempt
+   3D objects (planets, cards, chip) keep original colors while all UI,
+   overlays, and 2D backgrounds flip. The canvas is deliberately absent from
+   this list; 3D backgrounds (sky, clouds) invert programmatically instead. */
+body.negative .stars,
+body.negative .circuit-streaks,
+body.negative .navbar,
+body.negative .flee-orbs,
+body.negative .analog-overlay,
+body.negative .liquid-dock,
+body.negative .scene-loader,
+body.negative .html-pages,
+body.negative .hotspot-html,
+body.negative .handoff-veil,
+body.negative .focus-overlay {
   filter: invert(1);
+  transition: filter 0.6s ease;
 }
 
 /* --- Liquid glass toggle --- */

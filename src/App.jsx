@@ -41,8 +41,9 @@ export default function App() {
   // Negative is lifted (not owned by GlassToggle) so navbar and dock agree.
   const [layers, setLayers] = useState({ stars: true, circuits: true, grain: true, negative: false })
 
-  // One CSS `filter: invert(1)` inverts canvas + DOM overlays together, so no
-  // per-component theme plumbing is needed.
+  // Negative mode flips a body class (per-layer CSS invert, canvas excluded
+  // so exempt 3D objects keep original colors) and flows into the scene for
+  // the programmatic 3D-background inversion.
   useEffect(() => {
     document.body.classList.toggle('negative', layers.negative)
     return () => document.body.classList.remove('negative')
@@ -69,7 +70,7 @@ export default function App() {
           <ErrorBoundary>
             {WEBGL_AVAILABLE ? (
               <Suspense fallback={<SceneLoader />}>
-                <SceneCanvas onSelectCard={setFocusedCardIndex} />
+                <SceneCanvas onSelectCard={setFocusedCardIndex} isNegative={layers.negative} />
               </Suspense>
             ) : (
               <div className="focus-overlay">

@@ -6,9 +6,10 @@ import KeyboardScroll from './KeyboardScroll.jsx'
 import HtmlPages from '../components/ui/HtmlPages.jsx'
 
 // The full 3D journey, isolated in its own module so App can React.lazy it —
-// none of three.js ships in the initial bundle. Receives only the card-select
-// callback; everything else is owned inside.
-export default function SceneCanvas({ onSelectCard }) {
+// none of three.js ships in the initial bundle. Receives the card-select
+// callback plus the negative flag (for programmatic background inversion);
+// everything else is owned inside.
+export default function SceneCanvas({ onSelectCard, isNegative }) {
   return (
     <Canvas
       dpr={[1, 2]}
@@ -26,7 +27,7 @@ export default function SceneCanvas({ onSelectCard }) {
       <ScrollControls pages={4} damping={0.22} distance={1}>
         <KeyboardScroll />
         <Suspense fallback={null}>
-          <SceneRig onSelect={onSelectCard} />
+          <SceneRig onSelect={onSelectCard} isNegative={isNegative} />
         </Suspense>
         <Scroll html style={{ width: '100%' }}>
           <HtmlPages />

@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo, useRef } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef } from 'react'
 import { Environment, useScroll } from '@react-three/drei'
 import { useFrame, useLoader, useThree } from '@react-three/fiber'
 import gsap from 'gsap'
@@ -30,7 +30,7 @@ const CLOUD_PUFFS = [
   [0.08, 0.18, -0.02, 0.2],
 ]
 
-export default function SceneRig({ onSelect }) {
+export default function SceneRig({ onSelect, isNegative }) {
   const scroll = useScroll()
 
   // --- Set refs (owned here, rendered by child set components) --------------
@@ -106,6 +106,15 @@ export default function SceneRig({ onSelect }) {
     [],
   )
   const glowTexture = useMemo(() => createGlowTexture(), [])
+  // Negative-mode background inversion. The canvas itself is never CSS-
+  // filtered (that would take the exempt planets/cards/chip with it), so the
+  // 3D backgrounds invert here instead: sky clear-color and cloud tint swap
+  // to complements. Object materials are never touched — exempt by design.
+  const negativeRef = useRef(isNegative)
+  useEffect(() => {
+    negativeRef.current = isNegative
+    cloudMaterial.color.set(isNegative ? '#0a0a0a' : '#ffffff')
+  }, [isNegative, cloudMaterial])
   // Responsive fit: on narrow (portrait/phone) viewports the whole set scales
   // down so the planet trio, card ring, and title stay in frame. Exactly 1 on
   // landscape/desktop, so the desktop look is untouched. Re-renders on resize
@@ -323,7 +332,8 @@ export default function SceneRig({ onSelect }) {
     }
     // eslint-disable-next-line react-hooks/immutability -- Per-frame Three.js material write; the idiomatic R3F equivalent of a uniform update.
     cloudMaterial.opacity = carouselToGarden * 0.92 * (1 - gardenBlend)
-    state.gl.setClearColor('#87ceeb', carouselToGarden * (1 - gardenBlend))
+    // Sky complement of #87ceeb — the 3D background follows negative mode.
+    state.gl.setClearColor(negativeRef.current ? '#783114' : '#87ceeb', carouselToGarden * (1 - gardenBlend))
   }
 
   const updateGarden = (state, paused, clampedDelta) => {
