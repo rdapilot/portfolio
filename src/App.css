@@ -82,6 +82,13 @@ body.negative .focus-overlay {
   transition: filter 0.6s ease;
 }
 
+/* Card photos stay in original form: double-inverting exactly restores them
+   while the surrounding bubble/modal chrome stays negative. */
+body.negative .hotspot-bubble img,
+body.negative .focus-body img {
+  filter: invert(1);
+}
+
 /* --- Liquid glass toggle --- */
 .glass-toggle {
   position: relative;
